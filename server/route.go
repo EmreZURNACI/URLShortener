@@ -8,6 +8,7 @@ import (
 	"github.com/EmreZURNACI/url-shortener/app"
 	"github.com/EmreZURNACI/url-shortener/controller"
 	"github.com/gofiber/fiber/v2"
+	"github.com/spf13/viper"
 	"go.uber.org/zap"
 )
 
@@ -20,7 +21,7 @@ func Start(repo app.Repository) {
 	app.Get("/:link", _controller.Redirect)
 
 	zap.L().Sugar().Info("server is running")
-	if err := app.Listen(":8080"); err != nil {
+	if err := app.Listen(":" + viper.GetString("server.port")); err != nil {
 		zap.L().Sugar().Info("server failed")
 	}
 
