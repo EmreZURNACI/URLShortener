@@ -1,0 +1,9 @@
+server:
+  port: 8080
+db:
+  host: veritabani
+  port: 3306
+  dbname: shortener
+  user: emre
+  password: emre 
+  rootPassword: emreroot
