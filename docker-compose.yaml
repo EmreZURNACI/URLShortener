@@ -1,0 +1,30 @@
+version: "3.7"
+
+services: 
+  sunucu: 
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      - veritabani
+    networks:
+      - urlshortener
+  
+  veritabani:
+    image: mysql
+    restart: always
+    ports:  
+      - "3306:3306"
+    networks:
+      - urlshortener
+    environment:
+      MYSQL_ROOT_PASSWORD: "emreroot"
+      MYSQL_USER: "emre"
+      MYSQL_DATABASE: "shortener"
+      MYSQL_PASSWORD: "emre"
+
+networks:
+  urlshortener:
+    driver: bridge
